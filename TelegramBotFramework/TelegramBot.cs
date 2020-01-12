@@ -48,6 +48,8 @@ namespace TelegramBotFramework {
         /// <param name="sender">Sender object</param>
         /// <param name="e">Message arguments</param>
         private async void Client_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e) {
+            if (e.Message.Type != Telegram.Bot.Types.Enums.MessageType.Text) return; // TODO: Implement multiple types of handlers
+
             _logger.LogInformation("Received message, using CommandHandler to handle this message");
             await _commandHandler.HandleMessage(e.Message);
         }
